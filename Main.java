@@ -1,33 +1,46 @@
-package Ejercicios;
+package Actividades;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+	 public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese la capacidad maxima del contenedor de rectangulos: ");
-        int capacidad = sc.nextInt();
-        ContainerRect contenedor = new ContainerRect(capacidad);
+	     // Ingreso de coordenadas para el primer rectángulo
+	        System.out.print("Ingrese las coordenadas X e Y de la primera esquina del rectángulo A (separadas por espacio): ");
+	        double x1A = scanner.nextDouble();
+	        double y1A = scanner.nextDouble();
 
-        for (int i = 0; i < capacidad; i++) {
-            System.out.println("\nIngrese los datos del rectangulo " + (i + 1) + ":");
+	        System.out.print("Ingrese las coordenadas X e Y de la segunda esquina del rectángulo A (separadas por espacio): ");
+	        double x2A = scanner.nextDouble();
+	        double y2A = scanner.nextDouble();
 
-            System.out.print("Esquina 1 - x: ");
-            double x1 = sc.nextDouble();
-            System.out.print("Esquina 1 - y: ");
-            double y1 = sc.nextDouble();
-            System.out.print("Esquina 2 - x: ");
-            double x2 = sc.nextDouble();
-            System.out.print("Esquina 2 - y: ");
-            double y2 = sc.nextDouble();
+	        // Ingreso de coordenadas para el segundo rectángulo
+	        System.out.print("Ingrese las coordenadas X e Y de la primera esquina del rectángulo B (separadas por espacio): ");
+	        double x1B = scanner.nextDouble();
+	        double y1B = scanner.nextDouble();
 
-            Rectangulo rect = new Rectangulo(new Coordenada(x1, y1), new Coordenada(x2, y2));
-            contenedor.addRectangulo(rect);
-        }
+	        System.out.print("Ingrese las coordenadas X e Y de la segunda esquina del rectángulo B (separadas por espacio): ");
+	        double x2B = scanner.nextDouble();
+	        double y2B = scanner.nextDouble();
 
-        System.out.println("\nContenido del contenedor de rectangulos:");
-        System.out.println(contenedor);
+	        Rectangulo rectanguloA = new Rectangulo(new Coordenada(x1A, y1A), new Coordenada(x2A, y2A));
+	        Rectangulo rectanguloB = new Rectangulo(new Coordenada(x1B, y1B), new Coordenada(x2B, y2B));
 
-        sc.close();
-    }
+	        System.out.println("\n" + rectanguloA);
+	        System.out.println("Área: " + rectanguloA.calcularArea());
+	        System.out.println("Perímetro: " + rectanguloA.calcularPerimetro());
+
+	        System.out.println("\n" + rectanguloB);
+	        System.out.println("Área: " + rectanguloB.calcularArea());
+	        System.out.println("Perímetro: " + rectanguloB.calcularPerimetro());
+
+	        if (rectanguloA.seSuperpone(rectanguloB)) {
+	            System.out.println("\nLos rectángulos A y B se superponen.");
+	            System.out.println("Área de superposición: " + rectanguloA.calcularAreaInterseccion(rectanguloB));
+	        } else if (rectanguloA.seJunta(rectanguloB)) {
+	            System.out.println("\nLos rectángulos A y B se juntan.");
+	        } else {
+	            System.out.println("\nLos rectángulos A y B son disjuntos.");
+	        }
+	    }
 }
